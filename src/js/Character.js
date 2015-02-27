@@ -22,5 +22,9 @@ marvel.model.Character = (function () {
     return this._data.name;
   };
 
+  Character.fromJson = function (json) {
+    return new Character(json.id, json.name);
+  };
+
   return Character;
 }());

@@ -31,11 +31,12 @@ marvel.View = (function () {
     }
 
     function addCharacters(characters) {
-      for (var i = 0; i < characters.length; i++) {
-        var option = dom.charOption(characters[i]);
-        dom.char1.append(option);
-        dom.char2.append(option);
-      }
+      characters
+          .map(dom.charOption)
+          .forEach(function (option) {
+            dom.char1.append(option);
+            dom.char2.append(option);
+          });
     }
 
     function onsubmit(callback) {
@@ -48,9 +49,11 @@ marvel.View = (function () {
 
     function renderResults(comics) {
       clearResults();
-      for (var i = 0; i < comics.length; i++) {
-        dom.results.append(dom.comicRow(comics[i]));
-      }
+      comics.all()
+          .map(dom.comicRow)
+          .forEach(function (row) {
+            dom.results.append(row);
+          });
     }
 
     dom.form.on('submit', function (e) {

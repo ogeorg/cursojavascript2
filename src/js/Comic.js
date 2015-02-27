@@ -33,5 +33,9 @@ marvel.model.Comic = (function () {
     return this._data.id === other._data.id;
   };
 
+  Comic.fromJson = function (json) {
+    return new Comic(json.id, json.title, json.characters);
+  };
+
   return Comic;
 }());

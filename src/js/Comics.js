@@ -12,22 +12,24 @@ marvel.model.Comics = (function () {
   };
 
   Comics.prototype.contains = function (comic) {
-    for (var i = 0; i < this._comics.length; i++) {
-      if (comic.equals(this._comics[i])) {
-        return true;
-      }
-    }
-    return false;
+    return this._comics.some(function (candidate) {
+      return candidate.equals(comic);
+    });
   };
 
   Comics.prototype.intersection = function (otherComics) {
-    var intersection = [];
-    for (var i = 0; i < this._comics.length; i++) {
-      if (otherComics.contains(this._comics[i])) {
-        intersection.push(this._comics[i]);
-      }
-    }
-    return intersection;
+    var intersection = this._comics.filter(function (comic) {
+      return otherComics.contains(comic);
+    });
+    return new Comics(intersection);
+  };
+
+  Comics.prototype.size = function () {
+    return this._comics.length;
+  };
+
+  Comics.prototype.get = function (idx) {
+    return this._comics[idx];
   };
 
   Comics.create = function (comics) {
@@ -36,6 +38,10 @@ marvel.model.Comics = (function () {
 
   Comics.intersection = function (comics1, comics2) {
     return comics1.intersection(comics2);
+  };
+
+  Comics.fromJson = function (json) {
+    return new Comics(json.map(marvel.model.Comic.fromJson));
   };
 
   return Comics;

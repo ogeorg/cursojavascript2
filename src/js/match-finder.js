@@ -1,5 +1,7 @@
 var marvel = window.marvel || {};
 marvel.bootstrap = function (rootElement) {
+  'use strict';
+
   var view = new marvel.View(rootElement);
 
   view.addCharacters(marvel.api.characters());
