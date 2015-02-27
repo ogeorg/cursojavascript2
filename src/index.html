@@ -69,7 +69,14 @@
 </div>
 
 <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/src/js/Comic.js"></script>
+<script src="/src/js/Comics.js"></script>
+<script src="/src/js/Character.js"></script>
+<script src="/src/js/View.js"></script>
 <script src="/src/js/api.js"></script>
 <script src="/src/js/match-finder.js"></script>
+<script>
+  $(document).on('ready', marvel.bootstrap($(document.body)));
+</script>
 </body>
 </html>
