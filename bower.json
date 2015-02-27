@@ -16,5 +16,8 @@
   "dependencies": {
     "jquery": "~2.1.3",
     "bootstrap": "~3.3.2"
+  },
+  "devDependencies": {
+    "Faker": "~2.1.2"
   }
 }

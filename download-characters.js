@@ -3,10 +3,6 @@ var fs = require('fs'),
     md5 = require('crypto-js/md5'),
     q = require('q');
 
-// http://gateway.marvel.com:80/v1/public/characters?apikey=ae8d94a84e725be1d26ff19b89b1b0ab
-// ts - a timestamp (or other long string which can change on a request-by-request basis)
-// hash - a md5 digest of the ts parameter, your private key and your public key (e.g. md5(ts+privateKey+publicKey)
-
 function get(page) {
   var defer = q.defer(),
       privateKey = process.argv[2],

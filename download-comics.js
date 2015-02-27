@@ -1,15 +1,9 @@
 var fs = require('fs'),
-    http = require('http'),
+    request = require('requestretry'),
     md5 = require('crypto-js/md5'),
     q = require('q');
 
-// http://gateway.marvel.com:80/v1/public/characters/{charId}/comics?apikey=ae8d94a84e725be1d26ff19b89b1b0ab
-// ts - a timestamp (or other long string which can change on a request-by-request basis)
-// hash - a md5 digest of the ts parameter, your private key and your public key (e.g. md5(ts+privateKey+publicKey)
-
 function get(page) {
-  var request = require('requestretry');
-
   console.log("GETTING PAGE " + page);
   var defer = q.defer(),
       privateKey = process.argv[2],
@@ -32,29 +26,6 @@ function get(page) {
       defer.resolve(body.data);
     }
   });
-
-  //options = {
-  //  hostname: 'gateway.marvel.com',
-  //  port: 80,
-  //  path: '/v1/public/characters/' + process.argv[4] + '/comics?offset=' + (page * 100) + '&limit=100&ts=' + ts + '&hash=' + hash + '&apikey=' + publicKey,
-  //  method: 'GET'
-  //};
-
-  //http.get(options, function (response) {
-  //  var buffer = "";
-  //  response.setEncoding('utf8');
-  //  response.setTimeout(0);
-  //  response.on('data', function (data) {
-  //    process.stdout.write('.');
-  //    buffer += data;
-  //  });
-  //  response.on('end', function () {
-  //    console.log("HTTP GET OF PAGE " + page + " COMPLETE");
-  //    defer.resolve(JSON.parse(buffer).data);
-  //  });
-  //}).on('error', function (e) {
-  //  defer.reject(e);
-  //});
 
   return defer.promise;
 }
