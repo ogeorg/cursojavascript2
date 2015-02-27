@@ -18,14 +18,16 @@ marvel.api = (function () {
       }
       return characters;
     },
-    comics: function (charId, callback) {
-      return $.get('/data/comics-' + charId + '.json', function (response) {
-        var comics = [];
-        for (var i = 0; i < response.length; i++) {
-          comics.push(new marvel.model.Comic(response[i].id, response[i].title, response[i].characters));
-        }
-        callback(new marvel.model.Comics(comics));
-      });
+    comics: function (charId) {
+      return $.get('/data/comics-' + charId + '.json')
+          .then(function (response) {
+            var comics = [];
+            for (var i = 0; i < response.length; i++) {
+              comics.push(new marvel.model.Comic(response[i].id, response[i].title, response[i].characters));
+            }
+            return comics;
+          })
+          .then(marvel.model.Comics.create);
     }
   };
 

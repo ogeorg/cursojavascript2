@@ -34,5 +34,9 @@ marvel.model.Comics = (function () {
     return new Comics(comics);
   };
 
+  Comics.intersection = function (comics1, comics2) {
+    return comics1.intersection(comics2);
+  };
+
   return Comics;
 }());

@@ -5,11 +5,11 @@ marvel.bootstrap = function (rootElement) {
   view.addCharacters(marvel.api.characters());
 
   view.onsubmit(function (chars) {
-    marvel.api.comics(chars.char1, function (comics1) {
-      marvel.api.comics(chars.char2, function (comics2) {
-        var interseccion = comics1.intersection(comics2);
-        view.renderResults(interseccion);
-      });
-    });
+    var comics1 = marvel.api.comics(chars.char1);
+    var comics2 = marvel.api.comics(chars.char2);
+
+    $.when(comics1, comics2)
+        .then(marvel.model.Comics.intersection)
+        .then(view.renderResults);
   });
 };
