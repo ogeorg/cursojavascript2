@@ -1,9 +1,19 @@
+var view = {
+  makeOption: function(character) {
+    return "<option value='" + character + "'>" + character.name + "</option>";
+  },
+  render: function(character) {
+    var option = this.makeOption(character);
+    $('#personaje1').append(option);
+    $('#personaje2').append(option);
+  }
+};
+
 $(document).on('ready', function () {
 
   var characters = api.characters();
   for (var i = 0; i < characters.length; i++) {
-    $('#personaje1').append("<option value=\"" + characters[i].id + "\">" + characters[i].name + "</option>");
-    $('#personaje2').append("<option value=\"" + characters[i].id + "\">" + characters[i].name + "</option>");
+    view.render(characters[i]);
   }
 
   $('#buscador').on('submit', function (e) {
@@ -11,7 +21,7 @@ $(document).on('ready', function () {
     $('#resultados tbody').html("");
 
     if ($('#personaje1').val() === $('#personaje2').val())
-      throw Error("Los personajes son iguales");
+      throw new Error("Los personajes son iguales");
 
     api.comics($('#personaje1').val(), function (comics1) {
       api.comics($('#personaje2').val(), function (comics2) {
