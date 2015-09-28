@@ -1,13 +1,18 @@
-var view = {
-  makeOption: function(character) {
+var view = (function() {
+  var makeOption = function(character) {
     return "<option value='" + character + "'>" + character.name + "</option>";
-  },
-  render: function(character) {
-    var option = this.makeOption(character);
+  };
+
+  var appendOption =  function(character) {
+    var option = makeOption(character);
     $('#personaje1').append(option);
     $('#personaje2').append(option);
+  };
+
+  return {
+    render: appendOption
   }
-};
+})();
 
 $(document).on('ready', function () {
 
