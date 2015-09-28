@@ -16,6 +16,23 @@ var view = (function() {
 
 $(document).on('ready', function () {
 
+  function A(val) {
+    this.value = val;
+  }
+
+  var a1 = new A(3);
+  var a2 = A(4);
+  console.log(a1, a2);
+
+  function B(val) {
+    this.value = val;
+    return this;
+  }
+
+  var b1 = new B(5);
+  var b2 = B(6);
+  console.log(b1, b2);
+
   var characters = api.characters();
   for (var i = 0; i < characters.length; i++) {
     view.render(characters[i]);
