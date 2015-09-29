@@ -9,7 +9,7 @@ var api = {
       {id: 1009351, name: "Hulk"}
     ];
     return characters.map(function (json) {
-      return new Character(json.id, json.name);
+      return new marvel.model.Character(json.id, json.name);
     });
   },
   comics: function (characterId) {
@@ -17,7 +17,7 @@ var api = {
         .get('/data/comics-' + characterId + '.json')
         .then(function (comics) {
           return comics.map(function (comic) {
-            return new Comic(comic.id, comic.title, comic.characters);
+            return new marvel.model.Comic(comic.id, comic.title, comic.characters);
           });
         });
   }
