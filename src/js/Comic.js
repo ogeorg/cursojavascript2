@@ -30,7 +30,7 @@ marvel.model.Comic = (function () {
   };
 
   Comic.prototype.equals = function (other) {
-    return this._data.id === other._data.id;
+    return other instanceof Comic && this._data.id === other._data.id;
   };
 
   Comic.fromJson = function (json) {
