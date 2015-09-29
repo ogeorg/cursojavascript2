@@ -10,3 +10,7 @@ Character.prototype.getId = function () {
 Character.prototype.getName = function () {
   return this.name;
 };
+
+var marvel = window.marvel || {};
+marvel.model = marvel.model || {};
+marvel.model.Comic = Character;

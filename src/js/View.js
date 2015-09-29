@@ -8,7 +8,10 @@ function View(rootElement) {
           return "<option value=\"" + character.getId() + "\">" + character.getName() + "</option>"
         },
         comicRow: function (comic) {
-          return '<tr><td>' + comic.id + '</td><td>' + comic.title + '</td><td>' + comic.characters + '</td></li>'
+          return '<tr><td>'
+              + comic.getId() + '</td><td>'
+              + comic.getTitle() + '</td><td>'
+              + comic.getCharacters() + '</td></li>'
         }
       },
       callbacks = {

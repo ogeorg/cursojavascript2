@@ -13,6 +13,12 @@ var api = {
     });
   },
   comics: function (characterId) {
-    return $.get('/data/comics-' + characterId + '.json');
+    return $
+        .get('/data/comics-' + characterId + '.json')
+        .then(function (comics) {
+          return comics.map(function (comic) {
+            return new Comic(comic.id, comic.title, comic.characters);
+          });
+        });
   }
 };

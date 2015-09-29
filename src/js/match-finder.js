@@ -9,10 +9,16 @@ $(document).on('ready', function () {
         .done(function (comics1, comics2) {
           var intersection = [];
 
-          for (var i = 0; i < comics1[0].length; i++)
-            for (var j = 0; j < comics2[0].length; j++)
-              if (comics1[0][i].id === comics2[0][j].id)
-                intersection.push(comics2[0][i]);
+          for (var i = 0; i < comics1.length; i++) {
+            var c1 = comics1[i];
+            for (var j = 0; j < comics2.length; j++) {
+              var c2 = comics2[j];
+              if (c1.getId() === c2.getId()) {
+                intersection.push(c1);
+                break;
+              }
+            }
+          }
 
           view.renderResults(intersection);
         });
